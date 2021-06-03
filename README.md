@@ -1,5 +1,5 @@
-# Kiosc project: Object oriented programming: Delivery 3
-  Sales control application for a book kiosk in Java.
+# Car Rental Project: Databases: Delivery 3
+  Car rental control application in Java.
   
   ![](/App_Kiosco.png)
 
@@ -10,10 +10,11 @@
 
 ## Authors ✒️
 **Team IV**
-**Juan Sebastian Barreto Jiménez** - *Main team* - [juansebasbarreto](https://github.com/juansebasbarreto)
-**Juan Camilo Devia Bastos** - *Main team* - [juandevia](https://github.com/juandevia)
-**Valentina López Suárez** - *Main team* - [valentinalopezsuarez](https://github.com/valentinalopezsuarez)
-**Nicolas Javier Ramirez Beltran** - *Main team* - [nicolaaaaas2](https://github.com/nicolaaaaas2)
+**Juan Sebastián Barreto Jiménez** - *Main team* - [juansebasbarreto](https://github.com/juansebasbarreto)
+**Janet Chen He** - *Main team* - [XingYi98](https://github.com/XingYi98)
+**María José Niño Rodríguez** - *Main team* - [mjninor99](https://github.com/mjninor99)
+**María Kamila Obregón Ortega** - *Main team* - [](https://github.com/)
+**María Kamila Obregón Ortega** - *Main team* - [squintanae](https://github.com/squintanae)
 
 ## Licencia 📄
 Este proyecto está bajo la Licencia (Creative Commons Legal Code) - mira el archivo [LICENSE.md] para detalles
