@@ -1,0 +1,1100 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Entity Relationship Diagram - Bases_de_datos_proyecto_3 Conceptual Relationship Diagram</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Proyecto_3_bases_de_datos	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="Model_sopGep6D_AACARH7.html" class="PageParentTitle">Proyecto_3_Conceptual : Model</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Entity Relationship Diagram - Bases_de_datos_proyecto_3 Conceptual Relationship Diagram		</span>
+<a onclick="javascript: showVpLink('Proyecto_3_bases_de_datos.vpp://diagram/ts1Gep6D.AACARID', 'Bases_de_datos_proyecto_3 Conceptual Relationship Diagram\nProyecto_3_bases_de_datos.vpp://diagram/ts1Gep6D.AACARID', 'Bases_de_datos_proyecto_3 Conceptual Relationship Diagram', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|369.0|2.0|519.0|156.0|NOTE_QT6Ohp6D_AACARsT.html|NOTE_QT6Ohp6D_AACARsT.html|QT6Ohp6D.AACARsS" id="optionQT6Ohp6D.AACARsS">Unnamed Note : Note</option>
+<option value="shape|418.0|202.0|115.0|40.0|DBTable_VU0pep6D_AACARKF.html|DBTable_VU0pep6D_AACARKF.html|VU0pep6D.AACARKE" id="optionVU0pep6D.AACARKE">Periodo : Entity</option>
+<option value="shape|237.0|68.0|96.0|58.0|DBTable_DGwpep6D_AACARJ2.html|DBTable_DGwpep6D_AACARJ2.html|9Gwpep6D.AACARJ1" id="option9Gwpep6D.AACARJ1">Parametro : Entity</option>
+<option value="shape|233.0|298.0|106.0|40.0|DBTable_03vJep6D_AACARJY.html|DBTable_03vJep6D_AACARJY.html|U3vJep6D.AACARJX" id="optionU3vJep6D.AACARJX">BilletesXRenta : Entity</option>
+<option value="shape|219.0|401.0|137.0|58.0|DBTable_rKPJep6D_AACARJM.html|DBTable_rKPJep6D_AACARJM.html|rKPJep6D.AACARJL" id="optionrKPJep6D.AACARJL">Billete : Entity</option>
+<option value="shape|236.0|193.0|102.0|58.0|DBTable_f23Jep6D_AACARJE.html|DBTable_f23Jep6D_AACARJE.html|f23Jep6D.AACARJD" id="optionf23Jep6D.AACARJD">Renta : Entity</option>
+<option value="shape|35.0|192.0|107.0|58.0|DBTable_yuXJep6D_AACARI8.html|DBTable_yuXJep6D_AACARI8.html|yuXJep6D.AACARI7" id="optionyuXJep6D.AACARI7">Linea : Entity</option>
+<option value="shape|2.0|34.0|173.0|93.0|DBTable_UODGep6D_AACARIw.html|DBTable_UODGep6D_AACARIw.html|UODGep6D.AACARIv" id="optionUODGep6D.AACARIv">Carro : Entity</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Bases_de_datos_proyecto_3_Conceptual_Relationship_Diagram.png" usemap="#diagram_map" class="Image" width="892" height="463"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="142.0, 214.0, 142.0, 228.0, 236.0, 228.0, 236.0, 214.0" coords2="142.0, 214.0, 142.0, 228.0, 236.0, 228.0, 236.0, 214.0" shape="poly" alt="contiene:Relationship" id="areadiagram_map_8kEZep6D.AACARPI_default" href="DBForeignKey_qwEZep6D_AACARPH.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','142.0, 214.0, 142.0, 228.0, 236.0, 228.0, 236.0, 214.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=nQtFep6D.AACARjl/contiene/OneToManyRelationship')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '142.0, 214.0, 142.0, 228.0, 236.0, 228.0, 236.0, 214.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="81.0, 127.0, 81.0, 192.0, 95.0, 192.0, 95.0, 127.0" coords2="81.0, 127.0, 81.0, 192.0, 95.0, 192.0, 95.0, 127.0" shape="poly" alt="asociado:Relationship" id="areadiagram_map__ocZep6D.AACARP1_default" href="DBForeignKey_pQcZep6D_AACARP0.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','81.0, 127.0, 81.0, 192.0, 95.0, 192.0, 95.0, 127.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=gwtFep6D.AACARjo/asociado/OneToManyRelationship')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '81.0, 127.0, 81.0, 192.0, 95.0, 192.0, 95.0, 127.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="279.0, 126.0, 279.0, 193.0, 293.0, 193.0, 293.0, 126.0" coords2="279.0, 126.0, 279.0, 193.0, 293.0, 193.0, 293.0, 126.0" shape="poly" alt="posee:Relationship" id="areadiagram_map_JeCZep6D.AACARQM_default" href="DBForeignKey_xeCZep6D_AACARQL.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','279.0, 126.0, 279.0, 193.0, 293.0, 193.0, 293.0, 126.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=owtFep6D.AACARjr/posee/OneToManyRelationship')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '279.0, 126.0, 279.0, 193.0, 293.0, 193.0, 293.0, 126.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="279.0, 251.0, 279.0, 298.0, 293.0, 298.0, 293.0, 251.0" coords2="279.0, 251.0, 279.0, 298.0, 293.0, 298.0, 293.0, 251.0" shape="poly" alt="se paga:Relationship" id="areadiagram_map_0XzZep6D.AACARRz_default" href="DBForeignKey_EXzZep6D_AACARRy.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','279.0, 251.0, 279.0, 298.0, 293.0, 298.0, 293.0, 251.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=EwtFep6D.AACARju/se paga/OneToManyRelationship')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '279.0, 251.0, 279.0, 298.0, 293.0, 298.0, 293.0, 251.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="279.0, 338.0, 279.0, 401.0, 293.0, 401.0, 293.0, 338.0" coords2="279.0, 338.0, 279.0, 401.0, 293.0, 401.0, 293.0, 338.0" shape="poly" alt="pertenece:Relationship" id="areadiagram_map_sJ7Zep6D.AACARSK_default" href="DBForeignKey_0J7Zep6D_AACARSJ.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','279.0, 338.0, 279.0, 401.0, 293.0, 401.0, 293.0, 338.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=MwtFep6D.AACARjx/pertenece/OneToManyRelationship')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '279.0, 338.0, 279.0, 401.0, 293.0, 401.0, 293.0, 338.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="338.0, 214.0, 338.0, 228.0, 418.0, 228.0, 418.0, 214.0" coords2="338.0, 214.0, 338.0, 228.0, 418.0, 228.0, 418.0, 214.0" shape="poly" alt="tiene:Relationship" id="areadiagram_map_6oI5ep6D.AACARTR_default" href="DBForeignKey_KoI5ep6D_AACARTQ.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','338.0, 214.0, 338.0, 228.0, 418.0, 228.0, 418.0, 214.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=8wtFep6D.AACARj0/tiene/OneToManyRelationship')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '338.0, 214.0, 338.0, 228.0, 418.0, 228.0, 418.0, 214.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;margin-right:0;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      Proyecto 3 - Bases de datos - Diagrama Conceptual
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      Nombre de grupo: Mar&amp;#237;a Madre de Dios ruega por nosotros los 
+      desarrolladores
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      Nombres:
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      1. Juan Sebasti&amp;#225;n Barreto Jim&amp;#233;nez: CO_A850_SQL_S05
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      2. Janet Chen He: CO_A850_SQL_S09
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      3. Mar&amp;#237;a Jos&amp;#233; Ni&amp;#241;o Rodr&amp;#237;guez: CO_A850_SQL_S17
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      4. Mar&amp;#237;a Kamila Obreg&amp;#243;n Ortega: CO_A850_SQL_S18
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      5. David Santiago Quintana Echavarr&amp;#237;a: CO_A850_SQL_S20
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-right:0pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      Fecha: Mayo 11 de 2020
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="369, 2, 888, 158" coords2="369, 2, 888, 158" shape="rect" alt="Proyecto 3 - Bases de datos - Diagrama Conceptual
+Nombre de grupo: María Madre de Dios ruega por nosotros los desarrolladores
+Nombres:
+1. Juan Sebastián Barreto Jiménez: CO_A850_SQL_S05
+2. Janet Chen He: CO_A850_SQL_S09
+3. María José Niño Rodríguez: CO_A850_SQL_S17
+4. María Kamila Obregón Ortega: CO_A850_SQL_S18
+5. David Santiago Quintana Echavarría: CO_A850_SQL_S20
+Fecha: Mayo 11 de 2020:Note" id="areadiagram_map_QT6Ohp6D.AACARsS_default" href="NOTE_QT6Ohp6D_AACARsT.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="418, 202, 533, 254.0" coords2="418, 202, 533, 254.0" shape="rect" alt="Periodo:Entity" id="areadiagram_map_VU0pep6D.AACARKE_default" href="DBTable_VU0pep6D_AACARKF.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','418, 202, 533, 242',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=hQtFep6D.AACARjV/Periodo/Entity')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '418, 202, 533, 242')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="237, 68, 333, 138.0" coords2="237, 68, 333, 138.0" shape="rect" alt="Parametro:Entity" id="areadiagram_map_9Gwpep6D.AACARJ1_default" href="DBTable_DGwpep6D_AACARJ2.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','237, 68, 333, 126',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=uQtFep6D.AACARjS/Parametro/Entity')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '237, 68, 333, 126')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="233, 298, 339, 350.0" coords2="233, 298, 339, 350.0" shape="rect" alt="BilletesXRenta:Entity" id="areadiagram_map_U3vJep6D.AACARJX_default" href="DBTable_03vJep6D_AACARJY.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','233, 298, 339, 338',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=mQtFep6D.AACARjP/BilletesXRenta/Entity')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '233, 298, 339, 338')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="219, 401, 356, 471.0" coords2="219, 401, 356, 471.0" shape="rect" alt="Billete:Entity" id="areadiagram_map_rKPJep6D.AACARJL_default" href="DBTable_rKPJep6D_AACARJM.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','219, 401, 356, 459',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=aQtFep6D.AACARjM/Billete/Entity')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '219, 401, 356, 459')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="236, 193, 338, 263.0" coords2="236, 193, 338, 263.0" shape="rect" alt="Renta:Entity" id="areadiagram_map_f23Jep6D.AACARJD_default" href="DBTable_f23Jep6D_AACARJE.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','236, 193, 338, 251',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=SQtFep6D.AACARjJ/Renta/Entity')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '236, 193, 338, 251')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="35, 192, 142, 262.0" coords2="35, 192, 142, 262.0" shape="rect" alt="Linea:Entity" id="areadiagram_map_yuXJep6D.AACARI7_default" href="DBTable_yuXJep6D_AACARI8.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','35, 192, 142, 250',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=8QtFep6D.AACARjG/Linea/Entity')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '35, 192, 142, 250')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 34, 175, 139.0" coords2="2, 34, 175, 139.0" shape="rect" alt="Carro:Entity" id="areadiagram_map_UODGep6D.AACARIv_default" href="DBTable_UODGep6D_AACARIw.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','2, 34, 175, 127',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ERDiagram_v2NFep6D_AACARVU.html?shapeid=HgtFep6D.AACARjD/Carro/Entity')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '2, 34, 175, 127')" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Database Tables			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="25%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat;">
+					</div>
+&nbsp;<a href="DBTable_VU0pep6D_AACARKF.html" class="ItemLink">Periodo : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat;">
+					</div>
+&nbsp;<a href="DBTable_DGwpep6D_AACARJ2.html" class="ItemLink">Parametro : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat;">
+					</div>
+&nbsp;<a href="DBTable_03vJep6D_AACARJY.html" class="ItemLink">BilletesXRenta : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat;">
+					</div>
+&nbsp;<a href="DBTable_rKPJep6D_AACARJM.html" class="ItemLink">Billete : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat;">
+					</div>
+&nbsp;<a href="DBTable_f23Jep6D_AACARJE.html" class="ItemLink">Renta : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat;">
+					</div>
+&nbsp;<a href="DBTable_yuXJep6D_AACARI8.html" class="ItemLink">Linea : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat;">
+					</div>
+&nbsp;<a href="DBTable_UODGep6D_AACARIw.html" class="ItemLink">Carro : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Periodo Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_VU0pep6D_AACARKF.html#.CLpep6D.AACAROI" class="ItemLink">Fecha</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Parametro Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_DGwpep6D_AACARJ2.html#eYhpep6D.AACARL5" class="ItemLink">Valor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_DGwpep6D_AACARJ2.html#QcvChp6D.AACAQn7" class="ItemLink">TasaCarros</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+BilletesXRenta Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_03vJep6D_AACARJY.html#G3tpep6D.AACARM_" class="ItemLink">Cantidad</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Billete Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_rKPJep6D_AACARJM.html#EJlpep6D.AACARMo" class="ItemLink">Cantidad</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_rKPJep6D_AACARJM.html#pxVpep6D.AACARMr" class="ItemLink">Denominacion</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Renta Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_f23Jep6D_AACARJE.html#DHppep6D.AACARMU" class="ItemLink">Numero</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Linea Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yuXJep6D_AACARI8.html#czOpep6D.AACARLV" class="ItemLink">Numero</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yuXJep6D_AACARI8.html#Gyupep6D.AACARLY" class="ItemLink">Cantidad</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Carro Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_UODGep6D_AACARIw.html#Joipep6D.AACARKS" class="ItemLink">Placa</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_UODGep6D_AACARIw.html#clipep6D.AACARKV" class="ItemLink">UnidadesDisponibles</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_UODGep6D_AACARIw.html#Agypep6D.AACARKY" class="ItemLink">Precio</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_UODGep6D_AACARIw.html#eVypep6D.AACARKb" class="ItemLink">Puestos</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">number(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Proyecto_3_bases_de_datos	</div>
+</body>
+</html>

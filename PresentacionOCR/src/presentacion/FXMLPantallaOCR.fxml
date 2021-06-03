@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kioscopresentacion.FXMLPantallaKioscoController">
+    <children>
+      <TabPane prefHeight="475.0" prefWidth="589.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Renta Carros Grupo M">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="442.0" prefWidth="565.0">
+                     <children>
+                        <Label layoutX="27.0" layoutY="64.0" prefHeight="20.0" prefWidth="138.0" text="Fecha y Hora Renta :">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelFecha" layoutX="174.0" layoutY="64.0" prefHeight="20.0" prefWidth="141.0" textAlignment="CENTER">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnNuevaRenta" layoutX="429.0" layoutY="22.0" mnemonicParsing="false" onAction="#IniciarRenta" text="Nueva Renta" textFill="#5c0e8a">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="cmbCarros" layoutX="166.0" layoutY="104.0" prefHeight="25.0" prefWidth="211.0" />
+                        <Button fx:id="btnEliminar" layoutX="430.0" layoutY="163.0" mnemonicParsing="false" onAction="#ElimarLinea" prefHeight="27.0" prefWidth="97.0" text="Eliminar Linea" textFill="#8a270f">
+                           <font>
+                              <Font name="Bodoni MT" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnAgregarL" layoutX="430.0" layoutY="101.0" mnemonicParsing="false" onAction="#agregarLinea" prefHeight="27.0" prefWidth="97.0" text="Agregar Linea " textFill="#5c0e8a">
+                           <font>
+                              <Font name="Bodoni MT" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="labValorT" layoutX="389.0" layoutY="312.0" prefHeight="20.0" prefWidth="91.0">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="31.0" layoutY="145.0" prefHeight="20.0" prefWidth="129.0" text="Lineas de la Renta ">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="302.0" layoutY="313.0" prefHeight="17.0" prefWidth="84.0" text="Total Renta: ">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tblCarros" layoutX="25.0" layoutY="166.0" prefHeight="129.0" prefWidth="374.0">
+                          <columns>
+                            <TableColumn fx:id="columCarro" prefWidth="121.0" text="Placa Carro" />
+                            <TableColumn fx:id="colmCantidad" prefWidth="124.0" text="Cantidad " />
+                              <TableColumn fx:id="columSub" prefWidth="134.0" text="SubTotal " />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="31.0" layoutY="349.0" prefHeight="20.0" prefWidth="60.0" text="Cantidad ">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textCanBillete" layoutX="94.0" layoutY="347.0" prefHeight="20.0" prefWidth="68.0" />
+                        <Label layoutX="31.0" layoutY="309.0" prefHeight="20.0" prefWidth="97.0" text="Denominación: ">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cmbDenomina" layoutX="128.0" layoutY="307.0" prefHeight="25.0" prefWidth="117.0" />
+                        <Button fx:id="btnAgregarBil" layoutX="174.0" layoutY="346.0" mnemonicParsing="false" onAction="#agregarBillete" prefHeight="27.0" prefWidth="105.0" text="Agregar Billete" textFill="#0f8a66">
+                           <font>
+                              <Font name="Bodoni MT" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="labelSaldo" layoutX="403.0" layoutY="350.0" prefHeight="20.0" prefWidth="63.0">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnTerminar" layoutX="389.0" layoutY="388.0" mnemonicParsing="false" onAction="#terminarRenta" prefHeight="33.0" prefWidth="179.0" text="Terminar Renta" textFill="#8a370f">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="labelVueltas" layoutX="471.0" layoutY="365.0" prefHeight="20.0" prefWidth="89.0">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelNumeroPres" layoutX="505.0" layoutY="84.0" prefHeight="20.0" prefWidth="76.0" textAlignment="CENTER">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="33.0" layoutY="396.0" prefHeight="20.0" prefWidth="56.0" text="Vueltos">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="25.0" prefHeight="25.0" prefWidth="228.0" text="Renta Carros Grupo Maria" textFill="#b72ffc">
+                           <font>
+                              <Font name="Bodoni MT" size="20.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="31.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione Carro por  numero de puestos:" wrappingWidth="143.142578125">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font></Text>
+                        <Text layoutX="299.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saldo Billetes  Ingresados" wrappingWidth="90.142578125">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="labelSaldo1" layoutX="97.0" layoutY="396.0" prefHeight="20.0" prefWidth="63.0">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Reporte Diario ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="176.0" layoutY="27.0" prefHeight="25.0" prefWidth="279.0" text="Reporte Diario Libros Vendidos " textFill="#497de4">
+                           <font>
+                              <Font name="Bodoni MT" size="20.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tablaReporte" layoutX="20.0" layoutY="70.0" prefHeight="247.0" prefWidth="567.0">
+                          <columns>
+                              <TableColumn fx:id="isbnLibro" prefWidth="83.0" text="ISBN " />
+                            <TableColumn fx:id="nombreLibro" prefWidth="215.0" text="Nombre Libro" />
+                            <TableColumn fx:id="cantidadTotal" prefWidth="148.0" text="Cantidad Total " />
+                              <TableColumn fx:id="cantidadPesos" prefWidth="120.0" text="Cantidad en Pesos  " />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnReporte" layoutX="464.0" layoutY="355.0" mnemonicParsing="false" onAction="#generarReporte" prefHeight="32.0" prefWidth="123.0" text="Generar Reporte " textFill="#c61e1e">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="20.0" layoutY="330.0" prefHeight="21.0" prefWidth="138.0" text="Cantidad de libros:">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textCantidaLibros" layoutX="165.0" layoutY="330.0" prefHeight="21.0" prefWidth="121.0">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="360.0" text="Cantidad total vendida de libros:">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textCantidadTotal" layoutX="254.0" layoutY="360.0" prefHeight="21.0" prefWidth="89.0">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="388.0" text="Cantidad total en pesos de libros vendidos: ">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textCantidadTotalPesos" layoutX="315.0" layoutY="388.0" prefHeight="21.0" prefWidth="89.0">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="422.0" text="Cantidad total de monedas en la máquina: ">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textCantidadTotalMonedas" layoutX="308.0" layoutY="424.0" prefHeight="21.0" prefWidth="63.0">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="383.0" layoutY="409.0" prefHeight="21.0" prefWidth="171.0" text="Monedas de Quinientos: ">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="383.0" layoutY="436.0" prefHeight="21.0" prefWidth="120.0" text="Monedas de Mil: ">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textMonedas500" layoutX="546.0" layoutY="411.0" prefHeight="21.0" prefWidth="44.0">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textMonedasMil" layoutX="543.0" layoutY="434.0" prefHeight="21.0" prefWidth="50.0">
+                           <font>
+                              <Font name="Bodoni MT" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Label fx:id="MensajeError" layoutX="224.0" layoutY="-90.0" prefHeight="20.0" prefWidth="365.0" textAlignment="CENTER">
+         <font>
+            <Font name="Bodoni MT" size="14.0" />
+         </font>
+      </Label>
+    </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>
