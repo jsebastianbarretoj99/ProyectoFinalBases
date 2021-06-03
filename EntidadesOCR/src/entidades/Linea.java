@@ -43,6 +43,8 @@ public class Linea implements Serializable {
     @JoinColumn(name = "RENTANUMERO", referencedColumnName = "NUMERO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Renta renta;
+    
+    private Carro carroRentado;
 
     public Linea() {
     }
@@ -90,6 +92,14 @@ public class Linea implements Serializable {
 
     public void setRenta(Renta renta) {
         this.renta = renta;
+    }
+
+    public Carro getCarroRentado() {
+        return carroRentado;
+    }
+
+    public void setCarroRentado(Carro carroRentado) {
+        this.carroRentado = carroRentado;
     }
 
     @Override

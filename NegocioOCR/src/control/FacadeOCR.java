@@ -11,9 +11,9 @@ import entidades.DTOReporte;
 import entidades.DTOResumen;
 import entidades.Linea;
 import entidades.Renta;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,35 +22,12 @@ import java.util.List;
  */
 public class FacadeOCR {
     
-    CarroController carroControl = new CarroController();
-    BilleteController billeteControl = new BilleteController();
+    private CarroController carroContro = new CarroController();
+    private BilleteController billeteContro = new BilleteController();
+    private RentaController rentaContro = new RentaController();
 
     public FacadeOCR() {
     } // end FacadeOCR
-    
-    public String convertirHora(LocalDateTime hora){
-        String horaS = "";
-        horaS += Integer.toString(hora.getHour()) + ":";
-        if(hora.getMinute() < 10)
-            horaS += '0';
-        horaS += Integer.toString(hora.getMinute()) + ":";
-        if(hora.getSecond() < 10)
-            horaS += '0';
-        horaS += Integer.toString(hora.getSecond());
-        return horaS;
-    } // end convertirHora
-    
-    public String convertirFecha(LocalDateTime fecha){
-        String fechaS = "";
-        fechaS += Integer.toString(fecha.getYear()) + "-";
-        if(fecha.getMonthValue() < 10)
-            fechaS += '0';
-        fechaS += Integer.toString(fecha.getMonthValue()) + "-";
-        if(fecha.getDayOfMonth() < 10)
-            fechaS += '0';
-        fechaS += Integer.toString(fecha.getDayOfMonth());
-        return fechaS;
-    } // end convertirFecha
     
     DTOResumen contruirRespuestaRenta(Renta renta){
         DTOResumen dtoResumen = null;
@@ -59,9 +36,9 @@ public class FacadeOCR {
     
     DTOResumen crearRenta(){
         DTOResumen dtoResumen = new DTOResumen();
-        LocalDateTime date = LocalDateTime.now();
-        String fecha = this.convertirFecha(date);
-        String hora = this.convertirHora(date);
+        String res = "";
+        LocalDate fecha = LocalDate.now();
+        LocalTime hora = LocalTime.now();
         dtoResumen.setFecha(fecha);
         dtoResumen.setHora(hora);
         List<Carro> lisCarros = new ArrayList<>();
@@ -69,7 +46,16 @@ public class FacadeOCR {
         dtoResumen.setSaldoBilletesIngresados(0);
         dtoResumen.setTotalRenta(0);
         dtoResumen.setVueltasRenta(0);
-        dtoResumen.setMensaje(carroControl.crearRentaBD(fecha, hora));
+        if(this.carroContro.consultarCarrosBD().size() > 0){
+            res = this.rentaContro.crearRentaBD(fecha, hora);
+            if("Se creo la renta".equals(res))
+                dtoResumen.setMensaje("");
+            else
+                dtoResumen.setMensaje(res);
+        }else{
+            dtoResumen.setMensaje("No hay carros disponibles");
+        }
+        dtoResumen.setRenta(this.rentaContro.buscarUltimaRenta());
         return dtoResumen;
     } // end crearRenta
     
@@ -104,10 +90,10 @@ public class FacadeOCR {
     } // end consultarAcumlados
     
     List<Carro> consultarCarros(){
-        return carroControl.consultarCarrosBD();
+        return this.carroContro.consultarCarrosBD();
     } // end consultarCarros
     
     List<Billete> consultaTiposBilletes(){
-        return billeteControl.consultaTiposBilletesBD();
+        return this.billeteContro.consultaTiposBilletesBD();
     } // end consultaTiposBilletes
 }

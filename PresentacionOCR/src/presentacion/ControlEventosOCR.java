@@ -5,6 +5,8 @@
  */
 package presentacion;
 
+import control.FacadeOCR;
+import entidades.Renta;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,6 +25,10 @@ import javafx.scene.control.TextField;
  * @author juansebastianbarretojimenez
  */
 public class ControlEventosOCR implements Initializable {
+    
+    private Renta rentaActual;
+    
+    private FacadeOCR facadeOCR;
 
     @FXML
     private Label labelFecha;

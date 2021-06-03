@@ -6,7 +6,6 @@
 package control;
 
 import entidades.Carro;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,14 +21,7 @@ public class main {
     public static void main(String[] args) {
         FacadeOCR carro = new FacadeOCR();
         List<Carro> listaCarros = new ArrayList<>();
-        
-        listaCarros = carro.consultarCarros();
-        
         System.out.println("Creacion renta: " + carro.crearRenta());
-        
-        for(Carro car: listaCarros){
-            System.out.println("Carro Facade: "+ car.getId());
-        }
     }
     
 }

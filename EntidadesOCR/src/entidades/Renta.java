@@ -6,9 +6,9 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.sql.Time;
+import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +18,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Renta.findAll", query = "SELECT r FROM Renta r"),
-    @NamedQuery(name = "Renta.findByNumero", query = "SELECT r FROM Renta r WHERE r.numero = :numero")})
+    @NamedQuery(name = "Renta.findByNumero", query = "SELECT r FROM Renta r WHERE r.numero = :numero"),
+    @NamedQuery(name = "Renta.findByFecha", query = "SELECT r FROM Renta r WHERE r.fecha = :fecha"),
+    @NamedQuery(name = "Renta.findByHora", query = "SELECT r FROM Renta r WHERE r.hora = :hora")})
 public class Renta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,16 +43,15 @@ public class Renta implements Serializable {
     @Basic(optional = false)
     @Column(name = "NUMERO")
     private Integer numero;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "renta")
-    private Collection<Billetesxrenta> billetesxrentaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "renta")
-    private Collection<Linea> lineaCollection;
+    @Column(name = "FECHA")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+    @Column(name = "HORA")
+    @Temporal(TemporalType.TIME)
+    private Time hora;
     @JoinColumn(name = "PARAMETROID", referencedColumnName = "ID")
     @ManyToOne
-    private Parametro parametroid;
-    @JoinColumn(name = "PERIODOID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Periodo periodoid;
+    private Integer parametroid;
 
     public Renta() {
     }
@@ -67,38 +68,28 @@ public class Renta implements Serializable {
         this.numero = numero;
     }
 
-    @XmlTransient
-    public Collection<Billetesxrenta> getBilletesxrentaCollection() {
-        return billetesxrentaCollection;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setBilletesxrentaCollection(Collection<Billetesxrenta> billetesxrentaCollection) {
-        this.billetesxrentaCollection = billetesxrentaCollection;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    @XmlTransient
-    public Collection<Linea> getLineaCollection() {
-        return lineaCollection;
+    public Time getHora() {
+        return hora;
     }
 
-    public void setLineaCollection(Collection<Linea> lineaCollection) {
-        this.lineaCollection = lineaCollection;
+    public void setHora(Time hora) {
+        this.hora = hora;
     }
 
-    public Parametro getParametroid() {
+    public Integer getParametroid() {
         return parametroid;
     }
 
-    public void setParametroid(Parametro parametroid) {
+    public void setParametroid(Integer parametroid) {
         this.parametroid = parametroid;
-    }
-
-    public Periodo getPeriodoid() {
-        return periodoid;
-    }
-
-    public void setPeriodoid(Periodo periodoid) {
-        this.periodoid = periodoid;
     }
 
     @Override
@@ -123,7 +114,7 @@ public class Renta implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Renta[ numero=" + numero + " ]";
-    }
+        return "entidades.Renta{" + "numero=" + numero + ", fecha=" + fecha + ", hora=" + hora + ", parametroid=" + parametroid + '}';
+    }  
     
 }

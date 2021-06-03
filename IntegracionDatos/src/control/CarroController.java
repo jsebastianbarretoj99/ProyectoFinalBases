@@ -12,6 +12,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,17 +81,5 @@ public class CarroController {
         }    
         return listaCarros;
     } // end consultarCarros
-    
-    public String crearRentaBD(String fecha, String hora){
-        String consulta ="INSERT INTO Renta (Fecha, Hora) VALUES(?,?)";
-        try (
-            PreparedStatement statement = this.con.prepareStatement(consulta);){
-            statement.setString(1, fecha);
-            statement.setString(2, hora);
-            statement.executeUpdate();
-            return "Se creo la renta";
-        }catch (SQLException sqle) { 
-            return "Error en la creacion de renta";
-        }    
-    } // end crearRentaBD
+ 
 }

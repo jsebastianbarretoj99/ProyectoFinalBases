@@ -5,7 +5,8 @@
  */
 package entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -19,13 +20,14 @@ public class DTOResumen {
     private int totalRenta;
     private int saldoBilletesIngresados;
     private int vueltasRenta;
-    private String fecha;
-    private String hora;
+    private LocalDate fecha;
+    private LocalTime hora;
+    private Renta renta;
 
     public DTOResumen() {
     }
 
-    public DTOResumen(String mensaje, List<Carro> listaCarrosLinea, int totalRenta, int saldoBilletesIngresados, int vueltasRenta, String fecha, String hora) {
+    public DTOResumen(String mensaje, List<Carro> listaCarrosLinea, int totalRenta, int saldoBilletesIngresados, int vueltasRenta, LocalDate fecha, LocalTime hora) {
         this.mensaje = mensaje;
         this.listaCarrosLinea = listaCarrosLinea;
         this.totalRenta = totalRenta;
@@ -33,6 +35,17 @@ public class DTOResumen {
         this.vueltasRenta = vueltasRenta;
         this.fecha = fecha;
         this.hora = hora;
+    }
+
+    public DTOResumen(String mensaje, List<Carro> listaCarrosLinea, int totalRenta, int saldoBilletesIngresados, int vueltasRenta, LocalDate fecha, LocalTime hora, Renta renta) {
+        this.mensaje = mensaje;
+        this.listaCarrosLinea = listaCarrosLinea;
+        this.totalRenta = totalRenta;
+        this.saldoBilletesIngresados = saldoBilletesIngresados;
+        this.vueltasRenta = vueltasRenta;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.renta = renta;
     }
 
     public String getMensaje() {
@@ -75,25 +88,33 @@ public class DTOResumen {
         this.vueltasRenta = vueltasRenta;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public String getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(String hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     } 
 
+    public Renta getRenta() {
+        return renta;
+    }
+
+    public void setRenta(Renta renta) {
+        this.renta = renta;
+    }
+
     @Override
     public String toString() {
-        return "DTOResumen{" + "mensaje=" + mensaje + ", listaCarrosLinea=" + listaCarrosLinea + ", totalRenta=" + totalRenta + ", saldoBilletesIngresados=" + saldoBilletesIngresados + ", vueltasRenta=" + vueltasRenta + ", fecha=" + fecha + ", hora=" + hora + '}';
+        return "DTOResumen{" + "mensaje=" + mensaje + ", listaCarrosLinea=" + listaCarrosLinea + ", totalRenta=" + totalRenta + ", saldoBilletesIngresados=" + saldoBilletesIngresados + ", vueltasRenta=" + vueltasRenta + ", fecha=" + fecha + ", hora=" + hora + ", renta=" + renta + '}';
     }
- 
+
 }
