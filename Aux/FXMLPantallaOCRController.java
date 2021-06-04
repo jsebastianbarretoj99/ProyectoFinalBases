@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package presentacion;
 
 import control.FacadeOCR;
@@ -11,6 +16,7 @@ import entidades.Renta;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,15 +32,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
+ * FXML Controller class
  *
- * @author
- * Nombre Grupo: Maria Madre de Dios ruega por nosotros los desarrolladores
- *      Nombres:
- *          1. Juan Sebastian Barreto Jimenez.
- *          2. Janet Chen He.
- *          3. Maria Jose Nino Rodriguez.
- *          4. Maria Kamila Obregon Ortega.
- *          5. David Santiago Quintana Echavarria
+ * @author juansebastianbarretojimenez
  */
 public class FXMLPantallaOCRController implements Initializable {
     
@@ -88,6 +88,8 @@ public class FXMLPantallaOCRController implements Initializable {
     @FXML
     private Label labelVueltas;
     @FXML
+    private Label labelNumeroPres;
+    @FXML
     private Label labelError;
     @FXML
     private TableView<DTOReporte> tablaReporte;
@@ -100,11 +102,17 @@ public class FXMLPantallaOCRController implements Initializable {
     @FXML
     private Button btnReporte;
     @FXML
-    private Button btnConsultarRenta;
+    private Label textCantidaLibros;
     @FXML
-    private Button btnReporte1;
+    private Label textCantidadTotal;
     @FXML
-    private TextField textRentaConsultar;
+    private Label textCantidadTotalPesos;
+    @FXML
+    private Label textCantidadTotalMonedas;
+    @FXML
+    private Label textMonedas500;
+    @FXML
+    private Label textMonedasMil;
 
     /**
      * Initializes the controller class.
@@ -251,27 +259,6 @@ public class FXMLPantallaOCRController implements Initializable {
     @FXML
     private void generarReporte(ActionEvent event){
         this.recorridoLineasReporte(this.facadeOCR.consultarAcumlados());
-    }
-
-    @FXML
-    private void consultarRenta(ActionEvent event) {
-        Renta dtoRenta = new Renta();
-        dtoRenta.setNumero(Integer.parseInt(this.textRentaConsultar.getText()));
-        DTOResumen res = this.facadeOCR.consultaRenta(dtoRenta);
-        this.labelError.setText(res.getMensaje());
-        if(res.getMensaje().equals("")){
-            this.labValorT.setText(Integer.toString(res.getTotalRenta()));
-            this.rentaActual.setLineas(res.getListaCarrosLinea());
-            this.labelVueltas.setText(Integer.toString(res.getVueltasRenta()));
-            this.labelSaldo.setText(Integer.toString(res.getSaldoBilletesIngresados()));
-            this.recorridoLineas();
-        } // end if
-        
-    }
-
-    @FXML
-    private void limpiarReporte(ActionEvent event) {
-        this.recorridoLineasReporte(new ArrayList<>());
     }
     
 }

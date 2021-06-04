@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entidades;
 
 import java.sql.Time;
@@ -11,7 +6,14 @@ import java.util.List;
 
 /**
  *
- * @author juansebastianbarretojimenez
+ * @author
+ * Nombre Grupo: Maria Madre de Dios ruega por nosotros los desarrolladores
+ *      Nombres:
+ *          1. Juan Sebastian Barreto Jimenez.
+ *          2. Janet Chen He.
+ *          3. Maria Jose Nino Rodriguez.
+ *          4. Maria Kamila Obregon Ortega.
+ *          5. David Santiago Quintana Echavarria
  */
 public class DTOResumen {
     

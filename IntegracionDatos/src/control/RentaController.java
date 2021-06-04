@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import API.ConexionBD;
@@ -21,7 +16,14 @@ import java.util.List;
 
 /**
  *
- * @author juansebastianbarretojimenez
+ * @author
+ * Nombre Grupo: Maria Madre de Dios ruega por nosotros los desarrolladores
+ *      Nombres:
+ *          1. Juan Sebastian Barreto Jimenez.
+ *          2. Janet Chen He.
+ *          3. Maria Jose Nino Rodriguez.
+ *          4. Maria Kamila Obregon Ortega.
+ *          5. David Santiago Quintana Echavarria
  */
 public class RentaController {
     
@@ -76,6 +78,26 @@ public class RentaController {
         }    
         return renta;
     } // end consultaTiposBilletesBD
+    
+    public Renta buscarRentaBD(int numero ){
+        Renta renta = null;
+        String consulta ="SELECT * FROM Renta WHERE Numero = ?";
+        try (
+            PreparedStatement statement = this.con.prepareStatement(consulta);){
+            statement.setInt(1,numero);
+            try(ResultSet rs = statement.executeQuery();){
+                while (rs.next()){
+                  renta = new Renta(); 
+                  renta.setNumero(rs.getInt("Numero"));
+                  renta.setFecha(rs.getDate("Fecha"));
+                  renta.setHora(rs.getTime("Hora"));
+                  break;
+                } // end while
+            }
+        } catch (SQLException sqle) { 
+        }
+        return renta;
+    } // end buscarRentaBD
     
     public String agregarLineaBD(Linea dtoLinea){
         String consulta ="INSERT INTO Linea (Numero, Rentanumero, CarroId, Cantidad) VALUES(?,?,?,1)";
@@ -178,7 +200,6 @@ public class RentaController {
               dtoReporte.add(auxRep);
             } // end while
         } catch (SQLException sqle) { 
-            System.out.println("Error consultando acumulados");
         }
         return dtoReporte;
     } // end consultarAcumlados
