@@ -118,7 +118,7 @@ public class Billete implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Billete[ id=" + id + " ]";
+        return Integer.toString(denominacion);
     }
     
 }

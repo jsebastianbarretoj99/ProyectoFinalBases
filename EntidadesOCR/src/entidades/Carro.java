@@ -144,7 +144,7 @@ public class Carro implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Carro[ id=" + id + " ]";
+        return "Placa: " + placa + " Puestos: " + Integer.toString(puestos);
     }
     
 }

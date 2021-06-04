@@ -6,6 +6,7 @@
 package control;
 
 import API.ConexionBD;
+import entidades.DTOResumen;
 import entidades.Renta;
 import java.sql.Connection;
 import java.sql.Date;
@@ -69,10 +70,12 @@ public class RentaController {
               renta.setFecha(rs.getDate("Fecha"));
               renta.setHora(rs.getTime("Hora"));
               renta.setParametroid(rs.getInt("ParametroId"));
+              break;
             } // end while
         } catch (SQLException sqle) { 
             System.out.println("Error trayendo los billetes");
         }    
         return renta;
     } // end consultaTiposBilletesBD
+    
 }

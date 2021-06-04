@@ -9,6 +9,7 @@ import entidades.Billete;
 import entidades.Carro;
 import entidades.DTOReporte;
 import entidades.DTOResumen;
+import entidades.DTOTabla;
 import entidades.Linea;
 import entidades.Renta;
 import java.time.LocalDate;
@@ -29,71 +30,63 @@ public class FacadeOCR {
     public FacadeOCR() {
     } // end FacadeOCR
     
-    DTOResumen contruirRespuestaRenta(Renta renta){
-        DTOResumen dtoResumen = null;
-        return dtoResumen;
+    public DTOResumen contruirRespuestaRenta(Renta renta, List<Linea> lisLineas, int saldoBilletesIngresados, int totalRenta, int vueltasRenta, String mensaje){
+        return new DTOResumen(mensaje, lisLineas, totalRenta, saldoBilletesIngresados, vueltasRenta, renta.getFecha(), renta.getHora(), renta);
     } // end contruirRespuestaRenta
     
-    DTOResumen crearRenta(){
-        DTOResumen dtoResumen = new DTOResumen();
+    public DTOResumen crearRenta(){
+        DTOResumen dtoResumen;
         String res = "";
         LocalDate fecha = LocalDate.now();
         LocalTime hora = LocalTime.now();
-        dtoResumen.setFecha(fecha);
-        dtoResumen.setHora(hora);
-        List<Carro> lisCarros = new ArrayList<>();
-        dtoResumen.setListaCarrosLinea(lisCarros);
-        dtoResumen.setSaldoBilletesIngresados(0);
-        dtoResumen.setTotalRenta(0);
-        dtoResumen.setVueltasRenta(0);
+        List<Linea> lisLineas = new ArrayList<>();
         if(this.carroContro.consultarCarrosBD().size() > 0){
             res = this.rentaContro.crearRentaBD(fecha, hora);
             if("Se creo la renta".equals(res))
-                dtoResumen.setMensaje("");
-            else
-                dtoResumen.setMensaje(res);
+                res = "";
         }else{
-            dtoResumen.setMensaje("No hay carros disponibles");
-        }
-        dtoResumen.setRenta(this.rentaContro.buscarUltimaRenta());
+            res = "No hay carros disponibles";
+        } // end if
+        dtoResumen = this.contruirRespuestaRenta(this.rentaContro.buscarUltimaRenta(), lisLineas, 0, 0, 0, res);
         return dtoResumen;
     } // end crearRenta
     
-    DTOResumen agregarLinea(Linea dtoLinea){
+    public DTOResumen agregarLinea(Linea dtoLinea){
         DTOResumen dtoResumen = null;
         return dtoResumen;
     } // end agregarLinea
     
-    DTOResumen eliminarLinea(Linea dtoLinea){
+    public DTOResumen eliminarLinea(Linea dtoLinea){
         DTOResumen dtoResumen = null;
         return dtoResumen;
     } // end eliminarLinea
     
-    DTOResumen agregarBillete(Billete dtoBillete){
+    public DTOResumen agregarBillete(Billete dtoBillete){
         DTOResumen dtoResumen = null;
         return dtoResumen;
     } // end agregarBillete
     
-    DTOResumen terminarRenta(){
+    public DTOResumen terminarRenta(){
         DTOResumen dtoResumen = null;
         return dtoResumen;
     } // end terminarRenta
     
-    DTOResumen consultaRenta(Renta dtoRenta){
+    public DTOResumen consultaRenta(Renta dtoRenta){
         DTOResumen dtoResumen = null;
         return dtoResumen;
     }  // end consultaRenta
     
-    List<DTOReporte> consultarAcumlados(){
+    public List<DTOReporte> consultarAcumlados(){
         List<DTOReporte> dtoReporte = null;
         return dtoReporte;
     } // end consultarAcumlados
     
-    List<Carro> consultarCarros(){
+    public List<Carro> consultarCarros(){
         return this.carroContro.consultarCarrosBD();
     } // end consultarCarros
     
-    List<Billete> consultaTiposBilletes(){
+    public List<Billete> consultaTiposBilletes(){
         return this.billeteContro.consultaTiposBilletesBD();
     } // end consultaTiposBilletes
+ 
 }

@@ -29,14 +29,15 @@ public class BilleteController {
     List<Billete> consultaTiposBilletesBD(){
         List<Billete> listaBil = new ArrayList<>();
         Billete billete;
-        String consulta ="SELECT Denominacion, Cantidad FROM Billete";
+        String consulta ="SELECT * FROM Billete";
         try (
            PreparedStatement statement = this.con.prepareStatement(consulta);
            ResultSet rs = statement.executeQuery();){
             while (rs.next()){
               billete = new Billete(); 
-              billete.setDenominacion(rs.getInt(rs.getInt("Denominacion")));
-              billete.setCantidad(rs.getInt(rs.getInt("Cantidad")));
+              billete.setId(rs.getInt("Id"));
+              billete.setDenominacion(rs.getInt("Denominacion"));
+              billete.setCantidad(rs.getInt("Cantidad"));
               listaBil.add(billete);
             } // end while
         } catch (SQLException sqle) { 

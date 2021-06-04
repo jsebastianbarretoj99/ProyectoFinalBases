@@ -39,7 +39,7 @@ public class Linea implements Serializable {
     private int cantidad;
     @JoinColumn(name = "CARROID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Carro carroid;
+    private Integer carroid;
     @JoinColumn(name = "RENTANUMERO", referencedColumnName = "NUMERO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Renta renta;
@@ -78,11 +78,11 @@ public class Linea implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Carro getCarroid() {
+    public Integer getCarroid() {
         return carroid;
     }
 
-    public void setCarroid(Carro carroid) {
+    public void setCarroid(Integer carroid) {
         this.carroid = carroid;
     }
 

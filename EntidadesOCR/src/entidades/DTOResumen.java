@@ -5,8 +5,8 @@
  */
 package entidades;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,18 +16,18 @@ import java.util.List;
 public class DTOResumen {
     
     private String mensaje;
-    private List<Carro> listaCarrosLinea;
+    private List<Linea> listaCarrosLinea;
     private int totalRenta;
     private int saldoBilletesIngresados;
     private int vueltasRenta;
-    private LocalDate fecha;
-    private LocalTime hora;
+    private Date fecha;
+    private Time hora;
     private Renta renta;
 
     public DTOResumen() {
     }
 
-    public DTOResumen(String mensaje, List<Carro> listaCarrosLinea, int totalRenta, int saldoBilletesIngresados, int vueltasRenta, LocalDate fecha, LocalTime hora) {
+    public DTOResumen(String mensaje, List<Linea> listaCarrosLinea, int totalRenta, int saldoBilletesIngresados, int vueltasRenta, Date fecha, Time hora) {
         this.mensaje = mensaje;
         this.listaCarrosLinea = listaCarrosLinea;
         this.totalRenta = totalRenta;
@@ -37,7 +37,7 @@ public class DTOResumen {
         this.hora = hora;
     }
 
-    public DTOResumen(String mensaje, List<Carro> listaCarrosLinea, int totalRenta, int saldoBilletesIngresados, int vueltasRenta, LocalDate fecha, LocalTime hora, Renta renta) {
+    public DTOResumen(String mensaje, List<Linea> listaCarrosLinea, int totalRenta, int saldoBilletesIngresados, int vueltasRenta, Date fecha, Time hora, Renta renta) {
         this.mensaje = mensaje;
         this.listaCarrosLinea = listaCarrosLinea;
         this.totalRenta = totalRenta;
@@ -56,11 +56,11 @@ public class DTOResumen {
         this.mensaje = mensaje;
     }
 
-    public List<Carro> getListaCarrosLinea() {
+    public List<Linea> getListaCarrosLinea() {
         return listaCarrosLinea;
     }
 
-    public void setListaCarrosLinea(List<Carro> listaCarrosLinea) {
+    public void setListaCarrosLinea(List<Linea> listaCarrosLinea) {
         this.listaCarrosLinea = listaCarrosLinea;
     }
 
@@ -88,19 +88,19 @@ public class DTOResumen {
         this.vueltasRenta = vueltasRenta;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public LocalTime getHora() {
+    public Time getHora() {
         return hora;
     }
 
-    public void setHora(LocalTime hora) {
+    public void setHora(Time hora) {
         this.hora = hora;
     } 
 

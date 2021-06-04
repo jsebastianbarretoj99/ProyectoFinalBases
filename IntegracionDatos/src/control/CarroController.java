@@ -7,6 +7,7 @@ package control;
 
 import API.ConexionBD;
 import entidades.Carro;
+import entidades.DTOTabla;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -61,10 +62,10 @@ public class CarroController {
     public CarroController() {
     } // end CarroController
     
-    List<Carro> consultarCarrosBD(){
+    public List<Carro> consultarCarrosBD(){
         List<Carro> listaCarros = new ArrayList<>();
         Carro carro;
-        String consulta ="SELECT * FROM Carro WHERE UnidadesDisponibles = 1";
+        String consulta ="SELECT * FROM Carro";
         try (
            PreparedStatement statement = this.con.prepareStatement(consulta);
            ResultSet rs = statement.executeQuery();){
