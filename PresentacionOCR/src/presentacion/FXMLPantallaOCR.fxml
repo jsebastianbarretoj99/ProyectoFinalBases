@@ -119,7 +119,7 @@
                               <Font name="Bodoni MT" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelError" layoutX="33.0" layoutY="414.0" prefHeight="15.0" prefWidth="307.0" />
+                        <Label fx:id="labelError" layoutX="32.0" layoutY="402.0" prefHeight="27.0" prefWidth="319.0" />
                      </children>
                   </AnchorPane>
             </content>

@@ -44,6 +44,7 @@ public class Linea implements Serializable {
     private Carro carroRentado;
 
     public Linea() {
+        this.lineaPK = new LineaPK();
     }
 
     public Linea(LineaPK lineaPK) {

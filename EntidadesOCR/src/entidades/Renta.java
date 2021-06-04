@@ -54,7 +54,8 @@ public class Renta implements Serializable {
     @ManyToOne
     private Integer parametroid;
     
-    List<Linea> lineas;
+    private List<Linea> lineas;
+    private List<Billete> pagoBilletes;
 
     public Renta() {
     }
@@ -101,6 +102,14 @@ public class Renta implements Serializable {
 
     public void setLineas(List<Linea> lineas) {
         this.lineas = lineas;
+    }
+
+    public List<Billete> getPagoBilletes() {
+        return pagoBilletes;
+    }
+
+    public void setPagoBilletes(List<Billete> pagoBilletes) {
+        this.pagoBilletes = pagoBilletes;
     }
 
     @Override

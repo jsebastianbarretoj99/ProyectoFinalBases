@@ -11,6 +11,7 @@ package entidades;
  */
 public class DTOTabla {
     
+    private int numero;
     private String placa;
     private int cantidad;
     private int subtotalM;
@@ -18,7 +19,8 @@ public class DTOTabla {
     public DTOTabla() {
     }
 
-    public DTOTabla(String placa, int cantidad, int subtotalM) {
+    public DTOTabla(int numero, String placa, int cantidad, int subtotalM) {
+        this.numero = numero;
         this.placa = placa;
         this.cantidad = cantidad;
         this.subtotalM = subtotalM;
@@ -46,6 +48,14 @@ public class DTOTabla {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
              
 }

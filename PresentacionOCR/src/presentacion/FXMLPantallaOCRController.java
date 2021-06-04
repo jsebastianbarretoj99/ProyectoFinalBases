@@ -8,6 +8,7 @@ package presentacion;
 import control.FacadeOCR;
 import entidades.Billete;
 import entidades.Carro;
+import entidades.DTOReporte;
 import entidades.DTOResumen;
 import entidades.DTOTabla;
 import entidades.Linea;
@@ -38,6 +39,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FXMLPantallaOCRController implements Initializable {
     
     private Renta rentaActual;
+    
+    private int numeroLinea;
+    
+    private boolean rentaActiva = true;
 
     private final FacadeOCR facadeOCR = new FacadeOCR();
 
@@ -46,6 +51,8 @@ public class FXMLPantallaOCRController implements Initializable {
     private final ObservableList<Billete> listaDenominacion
             = FXCollections.observableArrayList();
     private final ObservableList<DTOTabla> lineas
+            = FXCollections.observableArrayList();
+    private final ObservableList<DTOReporte> lineasReporte
             = FXCollections.observableArrayList();
 
     @FXML
@@ -85,13 +92,13 @@ public class FXMLPantallaOCRController implements Initializable {
     @FXML
     private Label labelError;
     @FXML
-    private TableView<?> tablaReporte;
+    private TableView<DTOReporte> tablaReporte;
     @FXML
-    private TableColumn<?, ?> anio;
+    private TableColumn<DTOReporte, Integer> anio;
     @FXML
-    private TableColumn<?, ?> mes;
+    private TableColumn<DTOReporte, Integer> mes;
     @FXML
-    private TableColumn<?, ?> cantidadCarrosRentados;
+    private TableColumn<DTOReporte, Integer> cantidadCarrosRentados;
     @FXML
     private Button btnReporte;
     @FXML
@@ -106,8 +113,6 @@ public class FXMLPantallaOCRController implements Initializable {
     private Label textMonedas500;
     @FXML
     private Label textMonedasMil;
-    @FXML
-    private Label MensajeError;
 
     /**
      * Initializes the controller class.
@@ -126,16 +131,32 @@ public class FXMLPantallaOCRController implements Initializable {
         columSub.setCellValueFactory(subProperty);
     } // end iniciarTabla
     
+    private void iniciarTablaReporte() {
+        PropertyValueFactory<DTOReporte, Integer> anioProperty
+                = new PropertyValueFactory<>("anio");
+        anio.setCellValueFactory(anioProperty);
+
+        PropertyValueFactory<DTOReporte, Integer> mesProperty
+                = new PropertyValueFactory<>("mes");
+        mes.setCellValueFactory(mesProperty);
+
+        PropertyValueFactory<DTOReporte, Integer> cantProperty
+                = new PropertyValueFactory<>("cantidadCarros");
+        cantidadCarrosRentados.setCellValueFactory(cantProperty);
+    } // end iniciarTablaReporte
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         this.iniciarTabla();
+        this.iniciarTablaReporte();
     }    
     
     private void recorridoLineas() {
         final List<DTOTabla> resumLineas = new ArrayList<>();
         for (Linea linea : this.rentaActual.getLineas()) {
             DTOTabla tabla = new DTOTabla();
+            tabla.setNumero(linea.getLineaPK().getNumero());
             tabla.setPlaca(linea.getCarroRentado().getPlaca());
             tabla.setCantidad(linea.getCantidad());
             tabla.setSubtotalM(linea.getCarroRentado().getPrecio());
@@ -144,45 +165,100 @@ public class FXMLPantallaOCRController implements Initializable {
         this.lineas.setAll(resumLineas);
         this.tblCarros.setItems(lineas);
     }
+    
+    private void recorridoLineasReporte(List<DTOReporte> reporteLista) {
+        this.lineasReporte.setAll(reporteLista);
+        this.tablaReporte.setItems(lineasReporte);
+    }
 
     @FXML
     private void crearRenta(ActionEvent event) {
-        this.catalogoCarro.clear();
-        this.listaDenominacion.clear();
-        for(Carro car: this.facadeOCR.consultarCarros())
-            this.catalogoCarro.add(car);
-        for(Billete bil: this.facadeOCR.consultaTiposBilletes())
-            this.listaDenominacion.add(bil);
-        this.cmbCarros.setItems(catalogoCarro);
-        this.cmbDenomina.setItems(listaDenominacion);
-        DTOResumen res = this.facadeOCR.crearRenta();
-        this.rentaActual = res.getRenta();
-        this.labelSaldo.setText(Integer.toString(res.getSaldoBilletesIngresados()));
-        this.labelVueltas.setText(Integer.toString(res.getVueltasRenta()));
-        this.labelFecha.setText(res.getFecha().toString() + " " + res.getHora().toString());
-        this.textCanBillete.clear();
-        this.labValorT.setText(Integer.toString(res.getTotalRenta()));
-        this.recorridoLineas();
+        if(this.rentaActiva == true){
+            this.rentaActiva = false;
+            this.numeroLinea = 0;
+            this.catalogoCarro.clear();
+            this.listaDenominacion.clear();
+            for(Carro car: this.facadeOCR.consultarCarros())
+                this.catalogoCarro.add(car);
+            for(Billete bil: this.facadeOCR.consultaTiposBilletes())
+                this.listaDenominacion.add(bil);
+            this.cmbCarros.setItems(catalogoCarro);
+            this.cmbDenomina.setItems(listaDenominacion);
+            DTOResumen res = this.facadeOCR.crearRenta();
+            this.rentaActual = res.getRenta();
+            this.labelSaldo.setText(Integer.toString(res.getSaldoBilletesIngresados()));
+            this.labelVueltas.setText(Integer.toString(res.getVueltasRenta()));
+            this.labelFecha.setText(res.getFecha().toString() + " " + res.getHora().toString());
+            this.textCanBillete.clear();
+            this.labValorT.setText(Integer.toString(res.getTotalRenta()));
+            this.labelError.setText(res.getMensaje());
+            this.recorridoLineas();
+        }else{
+            this.labelError.setText("No se puede crear renta, finalice la actual");
+        }
+        
     } // end crearRenta
 
     @FXML
     private void elimarLinea(ActionEvent event) {
+        Linea dtoLinea = new Linea();
+        DTOTabla tabla = this.tblCarros.getSelectionModel().selectedItemProperty().get();
+        dtoLinea.getLineaPK().setNumero(tabla.getNumero());
+        dtoLinea.setCantidad(1);
+        dtoLinea.getLineaPK().setRentanumero(this.rentaActual.getNumero());
+        DTOResumen res = this.facadeOCR.eliminarLinea(dtoLinea);
+        this.labelError.setText(res.getMensaje());
+        if(res.getMensaje().equals("")){
+            this.labValorT.setText(Integer.toString(res.getTotalRenta()));
+            this.rentaActual.setLineas(res.getListaCarrosLinea());
+            this.recorridoLineas();
+        } // end if
     }
 
     @FXML
     private void agregarLinea(ActionEvent event) {
-    }
+        Linea dtoLinea = new Linea();
+        Carro c = new Carro();
+        c = this.cmbCarros.getValue();
+        this.numeroLinea++;
+        dtoLinea.getLineaPK().setNumero(this.numeroLinea);
+        dtoLinea.setCarroid(c.getId());
+        dtoLinea.setCantidad(1);
+        dtoLinea.getLineaPK().setRentanumero(this.rentaActual.getNumero());
+        DTOResumen res = this.facadeOCR.agregarLinea(dtoLinea);
+        this.labelError.setText(res.getMensaje());
+        if(res.getMensaje().equals("")){
+            this.labValorT.setText(Integer.toString(res.getTotalRenta()));
+            this.rentaActual.setLineas(res.getListaCarrosLinea());
+            this.recorridoLineas();
+        } // end if
+    } // end agregarLinea
 
     @FXML
     private void agregarBillete(ActionEvent event) {
+        Billete bil = this.cmbDenomina.getValue();
+        bil.setCantidad(Integer.parseInt(this.textCanBillete.getText()));
+        DTOResumen res = this.facadeOCR.agregarBillete(bil, this.rentaActual.getNumero());
+        this.labelError.setText(res.getMensaje());
+        if(res.getMensaje().equals("")){
+            this.labelSaldo.setText(Integer.toString(res.getSaldoBilletesIngresados()));
+            this.rentaActual.setPagoBilletes(res.getRenta().getPagoBilletes());
+        }
     }
 
     @FXML
     private void terminarRenta(ActionEvent event) {
+        DTOResumen res = this.facadeOCR.terminarRenta(this.rentaActual.getLineas(), this.rentaActual.getNumero(), Integer.parseInt(this.labelSaldo.getText()));
+        this.labelError.setText(res.getMensaje());
+        if(res.getMensaje().equals("")){
+            this.labelVueltas.setText(Integer.toString(res.getVueltasRenta()));
+            this.rentaActiva = true;
+        }
     }
 
     @FXML
-    private void generarReporte(ActionEvent event) {
+    private void generarReporte(ActionEvent event){
+        this.recorridoLineasReporte(this.facadeOCR.consultarAcumlados());
     }
     
 }

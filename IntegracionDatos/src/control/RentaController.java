@@ -6,6 +6,7 @@
 package control;
 
 import API.ConexionBD;
+import entidades.DTOReporte;
 import entidades.Linea;
 import entidades.Parametro;
 import entidades.Renta;
@@ -72,29 +73,58 @@ public class RentaController {
               break;
             } // end while
         } catch (SQLException sqle) { 
-            System.out.println("Error trayendo los billetes");
         }    
         return renta;
     } // end consultaTiposBilletesBD
     
     public String agregarLineaBD(Linea dtoLinea){
         String consulta ="INSERT INTO Linea (Numero, Rentanumero, CarroId, Cantidad) VALUES(?,?,?,1)";
+        String consulta1 = "UPDATE Carro SET UnidadesDisponibles = 0 WHERE Id = ?";
         try (
-            PreparedStatement statement = this.con.prepareStatement(consulta);){
+            PreparedStatement statement = this.con.prepareStatement(consulta);
+            PreparedStatement statement1 = this.con.prepareStatement(consulta1);){
             statement.setInt(1, dtoLinea.getLineaPK().getNumero());
             statement.setInt(2, dtoLinea.getLineaPK().getRentanumero());
             statement.setInt(3, dtoLinea.getCarroid());
+            statement1.setInt(1, dtoLinea.getCarroid());
             statement.executeUpdate();
+            statement1.executeUpdate();
             return "Se creo la linea";
         }catch (SQLException sqle) { 
             return "Error en la creacion de la linea";
         }    
     } // end agregarLineaBD
     
+    public String eliminarLineaBD(int numero, int rentaNumero){
+        String consulta ="DELETE FROM Linea WHERE Numero = ? AND Rentanumero = ?";
+        try (
+            PreparedStatement statement = this.con.prepareStatement(consulta);){
+            statement.setInt(1,numero);
+            statement.setInt(2,rentaNumero);
+            statement.executeUpdate();
+            return "";
+        } catch (SQLException sqle) { 
+            return "Error eliminando linea";
+        }
+    } // end eliminarLineaBD
+    
+    public String agregarDescuentoBD(int id, int numero){
+        String consulta ="UPDATE Renta SET ParametroId = ? WHERE Numero = ?";
+        try (
+            PreparedStatement statement = this.con.prepareStatement(consulta);){
+            statement.setInt(1, id);
+            statement.setInt(2, numero);
+            statement.executeUpdate();
+            return "Se actualizo renta";
+        }catch (SQLException sqle) { 
+            return "Error en la actualizacion de la renta";
+        }
+    } // end agregarDescuentoBD
+    
     public List<Linea> buscarLineas(int idRenta){
         List<Linea> lineas = new ArrayList<>();
         Linea linea = null;
-        String consulta ="SELECT * FROM Linea WHERE Id = ?";
+        String consulta ="SELECT * FROM Linea WHERE Rentanumero = ?";
         try (
             PreparedStatement statement = this.con.prepareStatement(consulta);){
             statement.setInt(1,idRenta);
@@ -110,7 +140,6 @@ public class RentaController {
                 } // end while
             }
         } catch (SQLException sqle) { 
-            System.out.println("Error trayendo los billetes");
         }    
         return lineas;
     } // end buscarLineas
@@ -130,9 +159,28 @@ public class RentaController {
               parametros.add(parametro);
             } // end while
         } catch (SQLException sqle) { 
-            System.out.println("Error trayendo los Parametros");
         }    
         return parametros;
     } // end buscarLineas
+    
+    public List<DTOReporte> consultarAcumladosBD(){
+        List<DTOReporte> dtoReporte = new ArrayList<>();
+        DTOReporte auxRep;
+        String consulta ="SELECT Year(Fecha) AS Anio, Month(Fecha) AS Mes, COUNT(*) AS Cantidad FROM Renta GROUP BY Year(Fecha), Month(Fecha)";
+        try (
+            PreparedStatement statement = this.con.prepareStatement(consulta);
+            ResultSet rs = statement.executeQuery();){
+            while (rs.next()){
+              auxRep = new DTOReporte(); 
+              auxRep.setAnio(rs.getInt("Anio"));
+              auxRep.setMes(rs.getInt("Mes"));
+              auxRep.setCantidadCarros(rs.getInt("Cantidad"));
+              dtoReporte.add(auxRep);
+            } // end while
+        } catch (SQLException sqle) { 
+            System.out.println("Error consultando acumulados");
+        }
+        return dtoReporte;
+    } // end consultarAcumlados
     
 } // end RentaController

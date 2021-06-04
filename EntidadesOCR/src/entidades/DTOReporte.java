@@ -11,40 +11,40 @@ package entidades;
  */
 public class DTOReporte {
     
-    private int anio;
-    private int mes;
-    private int cantidadCarros;
+    private Integer anio;
+    private Integer mes;
+    private Integer cantidadCarros;
 
     public DTOReporte() {
     }
     
-    public DTOReporte(int anio, int mes, int cantidadCarros) {
+    public DTOReporte(Integer anio, Integer mes, Integer cantidadCarros) {
         this.anio = anio;
         this.mes = mes;
         this.cantidadCarros = cantidadCarros;
     }
 
-    public int getAnio() {
+    public Integer getAnio() {
         return anio;
     }
 
-    public void setAnio(int anio) {
+    public void setAnio(Integer anio) {
         this.anio = anio;
     }
 
-    public int getMes() {
+    public Integer getMes() {
         return mes;
     }
 
-    public void setMes(int mes) {
+    public void setMes(Integer mes) {
         this.mes = mes;
     }
 
-    public int getCantidadCarros() {
+    public Integer getCantidadCarros() {
         return cantidadCarros;
     }
 
-    public void setCantidadCarros(int cantidadCarros) {
+    public void setCantidadCarros(Integer cantidadCarros) {
         this.cantidadCarros = cantidadCarros;
     }
     
