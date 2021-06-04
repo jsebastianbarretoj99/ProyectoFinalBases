@@ -15,7 +15,7 @@
 **Juan Sebastián Barreto Jiménez** - *Main team* - [juansebasbarreto](https://github.com/juansebasbarreto)
 **Janet Chen He** - *Main team* - [XingYi98](https://github.com/XingYi98)
 **María José Niño Rodríguez** - *Main team* - [mjninor99](https://github.com/mjninor99)
-**María Kamila Obregón Ortega** - *Main team* - [](https://github.com/)
+**María Kamila Obregón Ortega** - *Main team* - [kmor8](https://github.com/kmor8)
 **María Kamila Obregón Ortega** - *Main team* - [squintanae](https://github.com/squintanae)
 
 ## Licencia 📄
