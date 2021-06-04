@@ -40,9 +40,6 @@ public class Linea implements Serializable {
     @JoinColumn(name = "CARROID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Integer carroid;
-    @JoinColumn(name = "RENTANUMERO", referencedColumnName = "NUMERO", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Renta renta;
     
     private Carro carroRentado;
 
@@ -84,14 +81,6 @@ public class Linea implements Serializable {
 
     public void setCarroid(Integer carroid) {
         this.carroid = carroid;
-    }
-
-    public Renta getRenta() {
-        return renta;
-    }
-
-    public void setRenta(Renta renta) {
-        this.renta = renta;
     }
 
     public Carro getCarroRentado() {

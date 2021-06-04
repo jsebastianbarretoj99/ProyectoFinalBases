@@ -62,6 +62,44 @@ public class CarroController {
     public CarroController() {
     } // end CarroController
     
+    public boolean verificarCarroBD(int id){
+        String consulta ="SELECT * FROM Carro WHERE Id=?";
+        try (
+           PreparedStatement statement = this.con.prepareStatement(consulta);){
+            statement.setInt(1, id);
+            try(
+           ResultSet rs = statement.executeQuery();){
+                while (rs.next())
+                    return true;
+            }
+        } catch (SQLException sqle) { 
+        }  
+        return false;
+    } // end verificarCarroBD
+    
+    public Carro buscarCarroBD(int id){
+        Carro carro = null;
+        String consulta ="SELECT * FROM Carro WHERE Id=?";
+        try (
+           PreparedStatement statement = this.con.prepareStatement(consulta);){
+            statement.setInt(1, id);
+            try(
+                ResultSet rs = statement.executeQuery();){
+                while (rs.next()){
+                    carro = new Carro();
+                    carro.setId(rs.getInt("Id"));
+                    carro.setId(rs.getInt("Id"));
+                    carro.setPlaca(rs.getString("Placa"));
+                    carro.setPrecio(rs.getInt("Precio"));
+                    carro.setPuestos(rs.getInt("Puestos"));
+                    carro.setUnidadesdisponibles(rs.getInt("UnidadesDisponibles"));
+                }
+            }
+        } catch (SQLException sqle) { 
+        }  
+        return carro;
+    } // end buscarCarroBD
+    
     public List<Carro> consultarCarrosBD(){
         List<Carro> listaCarros = new ArrayList<>();
         Carro carro;
@@ -75,10 +113,10 @@ public class CarroController {
               carro.setPlaca(rs.getString("Placa"));
               carro.setPrecio(rs.getInt("Precio"));
               carro.setPuestos(rs.getInt("Puestos"));
+              carro.setUnidadesdisponibles(rs.getInt("UnidadesDisponibles"));
               listaCarros.add(carro);
             } // end while
         } catch (SQLException sqle) { 
-            System.out.println("Error trayendo los carros");
         }    
         return listaCarros;
     } // end consultarCarros

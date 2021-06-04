@@ -11,6 +11,7 @@ import entidades.DTOReporte;
 import entidades.DTOResumen;
 import entidades.DTOTabla;
 import entidades.Linea;
+import entidades.Parametro;
 import entidades.Renta;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,14 +24,18 @@ import java.util.List;
  */
 public class FacadeOCR {
     
-    private CarroController carroContro = new CarroController();
-    private BilleteController billeteContro = new BilleteController();
-    private RentaController rentaContro = new RentaController();
+    private final CarroController carroContro;
+    private final BilleteController billeteContro;
+    private final RentaController rentaContro;
 
     public FacadeOCR() {
+        this.carroContro = new CarroController();
+        this.billeteContro = new BilleteController();
+        this.rentaContro = new RentaController();
     } // end FacadeOCR
     
     public DTOResumen contruirRespuestaRenta(Renta renta, List<Linea> lisLineas, int saldoBilletesIngresados, int totalRenta, int vueltasRenta, String mensaje){
+        renta.setLineas(lisLineas);
         return new DTOResumen(mensaje, lisLineas, totalRenta, saldoBilletesIngresados, vueltasRenta, renta.getFecha(), renta.getHora(), renta);
     } // end contruirRespuestaRenta
     
@@ -53,6 +58,33 @@ public class FacadeOCR {
     
     public DTOResumen agregarLinea(Linea dtoLinea){
         DTOResumen dtoResumen = null;
+        String mensaje;
+        Carro carro;
+        List<Parametro> parametros;
+        int descuento = 0;
+        if(!this.carroContro.verificarCarroBD(dtoLinea.getCarroid())){
+            mensaje = "Carro no existe en el catalogo";
+        }else{
+            carro = this.carroContro.buscarCarroBD(dtoLinea.getCarroid());
+            if(carro.getUnidadesdisponibles() == 0){
+                mensaje = "Carro no cuenta con unidades disponibles";
+            }else{
+               mensaje = this.rentaContro.agregarLineaBD(dtoLinea);
+               if("Se creo la linea".equals(mensaje)){
+                   dtoLinea.setCarroRentado(carro);
+                   dtoResumen.setListaCarrosLinea(this.rentaContro.buscarLineas(dtoLinea.getLineaPK().getRentanumero()));
+                   parametros = this.rentaContro.buscarParametros();
+                   for(Parametro par: parametros){
+                       if(par.getTasacarros() < dtoResumen.getListaCarrosLinea().size()){
+                           // ALTERAR
+                          descuento = par.getValor();
+                       } 
+                   }
+                   
+               }
+            } // end if
+        } // end if
+        dtoResumen.setMensaje(mensaje);
         return dtoResumen;
     } // end agregarLinea
     

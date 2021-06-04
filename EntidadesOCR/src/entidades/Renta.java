@@ -8,6 +8,7 @@ package entidades;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,6 +53,8 @@ public class Renta implements Serializable {
     @JoinColumn(name = "PARAMETROID", referencedColumnName = "ID")
     @ManyToOne
     private Integer parametroid;
+    
+    List<Linea> lineas;
 
     public Renta() {
     }
@@ -90,6 +93,14 @@ public class Renta implements Serializable {
 
     public void setParametroid(Integer parametroid) {
         this.parametroid = parametroid;
+    }
+
+    public List<Linea> getLineas() {
+        return lineas;
+    }
+
+    public void setLineas(List<Linea> lineas) {
+        this.lineas = lineas;
     }
 
     @Override

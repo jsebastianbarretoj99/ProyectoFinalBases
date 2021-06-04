@@ -132,9 +132,9 @@ public class FXMLPantallaOCRController implements Initializable {
         this.iniciarTabla();
     }    
     
-    private void recorridoLineas(List<Linea> nuevasLineas) {
+    private void recorridoLineas() {
         final List<DTOTabla> resumLineas = new ArrayList<>();
-        for (Linea linea : nuevasLineas) {
+        for (Linea linea : this.rentaActual.getLineas()) {
             DTOTabla tabla = new DTOTabla();
             tabla.setPlaca(linea.getCarroRentado().getPlaca());
             tabla.setCantidad(linea.getCantidad());
@@ -162,7 +162,7 @@ public class FXMLPantallaOCRController implements Initializable {
         this.labelFecha.setText(res.getFecha().toString() + " " + res.getHora().toString());
         this.textCanBillete.clear();
         this.labValorT.setText(Integer.toString(res.getTotalRenta()));
-        this.recorridoLineas(res.getListaCarrosLinea());
+        this.recorridoLineas();
     } // end crearRenta
 
     @FXML
