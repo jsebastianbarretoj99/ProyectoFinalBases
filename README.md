@@ -1,7 +1,9 @@
 # Car Rental Project: Databases: Delivery 3
   Car rental control application in Java.
   
-  ![](/App_Kiosco.png)
+  ![](Multimedia/PantallaRentas.png)
+  
+  ![](Multimedia/PantallaReporte.png)
 
 ## Build with 🛠️
 * [Java] - The programming language used
